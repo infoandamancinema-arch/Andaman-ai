@@ -1,0 +1,33 @@
+# Render Blueprint for deploying the ANDAMAN AI REST API & Full-Stack Application
+# Free-tier compatible (₹0 / $0 monthly cost on Render Free Web Service tier)
+services:
+  - type: web
+    name: andaman-ai-api
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    healthCheckPath: /api/v1/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: AI_PROVIDER
+        value: gemini
+      - key: GEMINI_DEFAULT_MODEL
+        value: gemini-3.8-flash
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: TAVILY_API_KEY
+        sync: false
+      - key: ANDAMAN_API_KEY
+        sync: false
+      - key: CORS_ALLOWED_ORIGINS
+        value: "*"
+      - key: API_RATE_LIMIT_PER_MINUTE
+        value: "60"
+      - key: API_TIMEOUT_MS
+        value: "40000"
+      - key: ADMIN_EMAIL
+        value: info.andamancinema@gmail.com
